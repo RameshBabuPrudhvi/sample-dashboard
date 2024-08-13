@@ -20,7 +20,7 @@ jobs:
           node-version: '18'
       - name: Build Docusaurus website
         run: |
-          npm install 
+          npm install --force 
           npm run build
 
       - name: Deploy to GitHub Pages
