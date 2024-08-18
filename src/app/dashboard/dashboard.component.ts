@@ -79,9 +79,8 @@ export class DashboardComponent implements OnInit {
           lineSmooth: Chartist.Interpolation.cardinal({
               tension: 0
           }),
-          showArea: true,
           low: 0,
-          high: 50,
+          high: 50, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
           chartPadding: { top: 0, right: 0, bottom: 0, left: 0},
       }
 
@@ -104,11 +103,11 @@ export class DashboardComponent implements OnInit {
               tension: 0
           }),
           low: 0,
-          high: 1000,
+          high: 1000, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
           chartPadding: { top: 0, right: 0, bottom: 0, left: 0}
       }
 
-      var completedTasksChart = new Chartist.Bar('#completedTasksChart', dataCompletedTasksChart, optionsCompletedTasksChart);
+      var completedTasksChart = new Chartist.Line('#completedTasksChart', dataCompletedTasksChart, optionsCompletedTasksChart);
 
       // start animation for the Completed Tasks Chart - Line Chart
       this.startAnimationForLineChart(completedTasksChart);
@@ -117,20 +116,35 @@ export class DashboardComponent implements OnInit {
 
       /* ----------==========     Emails Subscription Chart initialization    ==========---------- */
 
-      var data = {
-        series: [5, 3, 4, 4, 2]
+      var datawebsiteViewsChart = {
+        labels: ['J', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D'],
+        series: [
+          [542, 443, 320, 780, 553, 453, 326, 434, 568, 610, 756, 895]
+
+        ]
       };
-
-      var sum = function(a, b) { return a + b };
-
-      // #websiteViewsChartb
-      var websiteViewsChart = new Chartist.Pie('#websiteViewsChart', data, {
-        labelInterpolationFnc: function(value) {
-          return Math.round(value / data.series.reduce(sum) * 100) + '%';
-        }
-      });
+      var optionswebsiteViewsChart = {
+          axisX: {
+              showGrid: false
+          },
+          low: 0,
+          high: 1000,
+          chartPadding: { top: 0, right: 5, bottom: 0, left: 0}
+      };
+      var responsiveOptions: any[] = [
+        ['screen and (max-width: 640px)', {
+          seriesBarDistance: 5,
+          axisX: {
+            labelInterpolationFnc: function (value) {
+              return value[0];
+            }
+          }
+        }]
+      ];
+      var websiteViewsChart = new Chartist.Bar('#websiteViewsChart', datawebsiteViewsChart, optionswebsiteViewsChart, responsiveOptions);
 
       //start animation for the Emails Subscription Chart
       this.startAnimationForBarChart(websiteViewsChart);
   }
+
 }
