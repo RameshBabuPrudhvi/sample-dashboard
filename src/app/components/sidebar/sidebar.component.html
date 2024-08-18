@@ -1,8 +1,8 @@
 <div class="logo">
     <a href="https://www.nasdaq.com" class="simple-text">
         <div class="logo-img">
-            <img *ngIf="routerPath !== '/dashboard-b'" src="/assets/img/Ev6EIPlD_400x400.jpg"/>
-            <img *ngIf="routerPath === '/dashboard-b'" src="/assets/img/angular2-logo-red.png"/>
+            <img *ngIf="(routerPath === '/dashboard') ||(routerPath === '/user-profile') || (routerPath === '/table-list-a')" src="/assets/img/nasdaq-icon.jpg"/>
+            <img *ngIf="(routerPath === '/dashboard-b') || (routerPath === '/table-list-b')" src="/assets/img/nasdaq-new-icon.png"/>
         </div>
         GUI Testing
     </a>
