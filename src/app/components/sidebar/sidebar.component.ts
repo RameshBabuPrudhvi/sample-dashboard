@@ -31,6 +31,7 @@ export class SidebarComponent implements OnInit, AfterViewChecked {
 
   ngOnInit() {
     this.menuItems = ROUTES.filter(menuItem => menuItem);
+    
   }
   ngAfterViewChecked() {
     this.routerPath = window.location.href.split('#')[1];
